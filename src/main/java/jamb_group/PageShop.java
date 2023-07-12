@@ -13,13 +13,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class PageShop extends AbstractPage{
 	
 
-	@FindBy (xpath = "//div[1]/div[2]/div/div/a")
+	@FindBy (xpath = "//a[@class='addToCart']")
 	private WebElement item;
 	
-	@FindBy (xpath = "//div[3]/div[2]/div[1]/a")
+	@FindBy (xpath = "//span[@class='lnr lnr-cart']")
 	private WebElement cartRecap;
 	
-	@FindBy (xpath = "//div[2]/ul/li[4]/a")
+	@FindBy (xpath = "//a[@onclick='viewShoppingCartPage();']")
 	private WebElement goToCart;
 	
 	
