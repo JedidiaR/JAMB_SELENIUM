@@ -22,10 +22,17 @@ public class PageShop extends AbstractPage{
 	@FindBy (xpath = "//a[@onclick='viewShoppingCartPage();']")
 	private WebElement goToCart;
 	
+	@FindBy (xpath = "//div[@class='shop-cart']/a")
+	private WebElement countItem;
+	
 	
 	public PageShop(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
+	}
+	
+	public WebElement getCountItem() {
+		return countItem;
 	}
 	
 	public void addItem(WebDriverWait wait) {
