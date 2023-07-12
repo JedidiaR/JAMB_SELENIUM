@@ -18,6 +18,12 @@ public class CartPage {
 	@FindBy (xpath = "//td[2]/input")
 	private WebElement quantity;
 	
+	@FindBy (xpath = "//a[@onclick=\"javascript:updateCart('#mainCartTable');\"]")
+	private WebElement recalculate;
+	
+	@FindBy (xpath = "//div[2]/a")
+	private WebElement payment;
+	
 	public CartPage(WebDriver driver) {
 //		super(driver);
 		this.driver = driver;
@@ -30,6 +36,14 @@ public class CartPage {
 		
 		int sum = Integer.parseInt(quantity.getAttribute("value")) * 2;
 		OutilTechnique.remplirChamp(quantity, String.valueOf(sum));
+	}
+	
+	public void recalculate() {
+		recalculate.click();
+	}
+	
+	public void goToPayment() {
+		payment.click();
 	}
 	
 	

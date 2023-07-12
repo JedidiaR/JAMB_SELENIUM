@@ -33,19 +33,21 @@ public class RunTest {
 		CartPage cartPage = pageShop.goToCartPage();
 		logger.info("STEP 3 : GO TO CART PAGE");
 		
-		
 		// STEP 4 : TO DO
 		logger.info("STEP 4 TO DO");
 		
-		// STEP 5 : DOUBLE QUANTITY OF CHOSEN ITEM IN CART PAGE
+		// STEP 5 DONE : DOUBLE QUANTITY OF CHOSEN ITEM IN CART PAGE
 		logger.info("STEP 5 : DOUBLE QUANTITY");
 		cartPage.doubleQuantity();
 		
-		// STEP 6 : RECALCULATE BUTTON
-		// => //div[2]/div[1]/div/a[1]
+		// STEP 6 DONE : RECALCULATE BUTTON
+		logger.info("STEP 6 : RECALCULATE CART SUM");	
+		cartPage.recalculate();
+		
 		
 		// STEP 7 : PAYMENT
-		// => //div[2]/a
+		logger.info("GO TO PAYMENT");
+		cartPage.goToPayment();
 	}
 
 }
