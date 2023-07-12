@@ -21,7 +21,7 @@ public class PageShop{
 	@FindBy (xpath = "//div[3]/div[2]/div[1]/a")
 	private WebElement cartRecap;
 	
-	@FindBy (xpath = "//ul/li[4]/a")
+	@FindBy (xpath = "//div[2]/ul/li[4]/a")
 	private WebElement goToCart;
 	
 	
@@ -32,6 +32,8 @@ public class PageShop{
 	}
 	
 	public void addItem() {
+		wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+		item = wait.until(ExpectedConditions.elementToBeClickable(item));
 		item.click();
 		
 	}
@@ -49,8 +51,8 @@ public class PageShop{
 	}
 	
 	public CartPage goToCartPage() {
-		wait = new WebDriverWait(driver, Duration.ofSeconds(2));
-		goToCart = wait.until(ExpectedConditions.elementToBeClickable(goToCart));
+		wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+		goToCart = wait.until(ExpectedConditions. elementToBeClickable(goToCart));
 		goToCart.click();
 		return new CartPage(driver);
 	}
