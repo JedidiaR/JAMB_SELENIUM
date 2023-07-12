@@ -23,10 +23,17 @@ public class CartPage extends AbstractPage{
 	@FindBy (xpath = "//a[@href='/shopizer/shop/order/checkout.html']")
 	private WebElement payment;
 	
+	@FindBy (xpath = "//span[@class='nomargin']")
+	private WebElement item;
+	
 	public CartPage(WebDriver driver) {
 		super(driver);
 //		this.driver = driver;
 		PageFactory.initElements(driver, this);
+	}
+	
+	public WebElement getItemFromCart() {
+		return item;
 	}
 	
 	public void doubleQuantity(WebDriverWait wait) {

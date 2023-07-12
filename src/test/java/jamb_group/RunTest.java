@@ -1,5 +1,7 @@
 package jamb_group;
 
+import static org.junit.Assert.assertTrue;
+
 import java.time.Duration;
 
 import org.junit.Before;
@@ -44,8 +46,9 @@ public class RunTest {
 		CartPage cartPage = pageShop.goToCartPage(wait);
 		logger.info("STEP 3 : GO TO CART PAGE");
 		
-		// STEP 4 : TO DO
+		// STEP 4 TO DO : IMAGE + NOM + QUANTITE + PRIX + TOTAL
 		logger.info("STEP 4 TO DO");
+		assertTrue("ITEM IS NOT VISIBLE", cartPage.getItemFromCart().isDisplayed());
 		
 		// STEP 5 DONE : DOUBLE QUANTITY OF CHOSEN ITEM IN CART PAGE
 		logger.info("STEP 5 : DOUBLE QUANTITY");
