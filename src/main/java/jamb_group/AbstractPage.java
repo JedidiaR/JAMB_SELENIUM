@@ -8,13 +8,16 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class AbstractPage {
 
-	protected WebDriver driver;
-	protected WebDriverWait wait;
+	private WebDriver driver;
 	
 	
 	public AbstractPage(WebDriver driver) {
-		PageFactory.initElements(driver, this);
+//		PageFactory.initElements(driver, this);
 		this.driver = driver;
+	}
+	
+	public WebDriver getDriver() {
+		return driver;
 	}
 	
 	

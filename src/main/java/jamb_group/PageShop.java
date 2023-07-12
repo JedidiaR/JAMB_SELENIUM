@@ -10,10 +10,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class PageShop{
+public class PageShop extends AbstractPage{
 	
-	private WebDriver driver;
-	private WebDriverWait wait;
 
 	@FindBy (xpath = "//div[1]/div[2]/div/div/a")
 	private WebElement item;
@@ -26,35 +24,28 @@ public class PageShop{
 	
 	
 	public PageShop(WebDriver driver) {
-//		super(driver);
-		this.driver = driver;
+		super(driver);
 		PageFactory.initElements(driver, this);
 	}
 	
-	public void addItem() {
-		wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+	public void addItem(WebDriverWait wait) {
 		item = wait.until(ExpectedConditions.elementToBeClickable(item));
 		item.click();
 		
 	}
 	
-	public void recapCart() {
-//		wait = new WebDriverWait(driver, Duration.ofSeconds(2));
-//		cart = wait.until(ExpectedConditions.elementToBeClickable(cart));
-//		cart.click();
-		
+	public void recapCart() {		
 		//Creating object of an Actions class
-		Actions action = new Actions(driver);
+		Actions action = new Actions(super.getDriver());
 
 		//Performing the mouse hover action on the target element.
 		action.moveToElement(cartRecap).perform();
 	}
 	
-	public CartPage goToCartPage() {
-		wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+	public CartPage goToCartPage(WebDriverWait wait) {
 		goToCart = wait.until(ExpectedConditions. elementToBeClickable(goToCart));
 		goToCart.click();
-		return new CartPage(driver);
+		return new CartPage(super.getDriver());
 	}
 	
 }

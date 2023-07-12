@@ -31,7 +31,7 @@ public class OutilTechnique {
 		}
 
 	}
-	
+
 	public static void elementExist(WebElement e) {
 		try {
 			e.isDisplayed();
