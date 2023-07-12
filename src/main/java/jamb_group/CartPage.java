@@ -48,8 +48,9 @@ public class CartPage extends AbstractPage{
 	}
 	
 	public void goToPayment(WebDriverWait wait) {
-		payment = wait.until(ExpectedConditions.elementToBeClickable(payment));
-//		payment.click();
+//		payment = wait.until(ExpectedConditions.elementToBeClickable(payment));
+		payment.click();
+		payment.click();
 	}
 	
 	
