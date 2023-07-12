@@ -2,6 +2,7 @@ package jamb_group;
 
 import java.time.Duration;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -19,14 +20,17 @@ public class RunTest {
 	
 	private String site = "http://localhost:8080/shopizer/shop?locale=fr";
 	
-	@Test
-	public void first() {
+	@Before
+	public void init() {
 		driver = OutilTechnique.choisirNavigateur(ENavigateur.chrome);
 		driver.get(site);
 		wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+	}
+	
+	@Test
+	public void first() {
 
 		logger.info("STEP 1 : GO TO LANDING PAGE : " + driver.getTitle());
-//		System.out.println(driver.getTitle());
 		
 		// STEP 2 DONE : GET RANDOM ITEM TO ADD TO CART
 		// CHANGE div[1] to div[2] or more to chose other item
