@@ -14,7 +14,7 @@ import utils.OutilTechnique;
 
 public class CartPage extends AbstractPage{
 	
-	
+	//@FindBy(name = "")
 	@FindBy (xpath = "//input[@name='quantity']")
 	private WebElement quantity;
 	
@@ -32,39 +32,67 @@ public class CartPage extends AbstractPage{
 	
 	public CartPage(WebDriver driver) {
 		super(driver);
-		PageFactory.initElements(driver, this);
 	}
-	
+	/**
+	 * 
+	 * @return WebElement
+	 * get item from cart
+	 */
 	public WebElement getItemFromCart() {
 		return item;
 	}
 	
+	/**
+	 * 
+	 * @param wait
+	 * return double quantity from cart
+	 */
 	public void doubleQuantity(WebDriverWait wait) {
 		quantity = wait.until(ExpectedConditions.elementToBeClickable(quantity));
 		
 		int sum = Integer.parseInt(quantity.getAttribute("value")) * 2;
 		OutilTechnique.remplirChamp(quantity, String.valueOf(sum));
 	}
-	
+	/**
+	 * click recalculate button
+	 */
 	public void recalculate() {
 		recalculate.click();
 	}
 	
+	/**
+	 * 
+	 * @param wait
+	 * go to payment page
+	 */
 	public void goToPayment(WebDriverWait wait) {
 		payment = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@href='/shopizer/shop/order/checkout.html']")));
 		payment.click();
 	}
 	
-	// return number of items
+	/**
+	 * 
+	 * @return quantity value : number of items in cart
+	 * 
+	 */
 	public int getQuantity() {
 		WebElement qty = getDriver().findElement(By.xpath("//input[@name='quantity']"));
 		return Integer.parseInt(qty.getAttribute("value"));
 	}
-	
+	/**
+	 * 
+	 * @return String subtotal
+	 * 
+	 */
 	public String getSubTotal() {
 		return subtotal.getText().substring(3);
 	}
 	
+	/**
+	 * 
+	 * @return String subtotal
+	 * 
+	 */
 	public String getSubTotal2() {
 		WebElement sub = getDriver().findElement(By.xpath("//span[@class='amount']"));
 		String res = sub.getText().substring(3);
