@@ -76,9 +76,13 @@ public class CartPage extends AbstractPage{
 	 * 
 	 */
 	public int getQuantity() {
-		WebElement qty = getDriver().findElement(By.xpath("//input[@name='quantity']"));
-		return Integer.parseInt(qty.getAttribute("value"));
+		return Integer.parseInt(quantity.getAttribute("value"));
 	}
+	
+	public WebElement getQuantityWE() {
+		return quantity;
+	}
+	
 	/**
 	 * 
 	 * @return String subtotal
@@ -100,10 +104,14 @@ public class CartPage extends AbstractPage{
 //		return Integer.parseInt(res);
 	}
 	
+	/**
+	 * 
+	 * @return image of item
+	 * 
+	 */
 	public WebElement getImgItem() {
 		return getDriver().findElement(By.xpath("//div[@class='row-cart']/*/img"));
 		
-	}
-	
+	}	
 	
 }

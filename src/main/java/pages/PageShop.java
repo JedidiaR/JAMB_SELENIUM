@@ -22,7 +22,7 @@ public class PageShop extends AbstractPage{
 	@FindBy (xpath = "//a[@onclick='viewShoppingCartPage();']")
 	private WebElement goToCart;
 	
-	@FindBy (xpath = "//div[@class='shop-cart']/a")
+	@FindBy (className = "shop-cart")
 	private WebElement countItem;
 	
 	
