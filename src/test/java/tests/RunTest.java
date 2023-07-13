@@ -14,7 +14,7 @@ import utils.Utils.ENavigateur;
 
 public class RunTest {
 	
-	WebDriver driver;
+	static WebDriver driver;
 	WebDriverWait wait;
 
 	protected Logger logger = LoggerFactory.getLogger(this.getClass());

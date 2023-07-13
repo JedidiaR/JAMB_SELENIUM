@@ -79,15 +79,26 @@ public class CartPage extends AbstractPage{
 		return Integer.parseInt(quantity.getAttribute("value"));
 	}
 	
+	/**
+	 * 
+	 * @return price item
+	 */
 	public WebElement getPriceItem() {
 		return getDriver().findElement(By.xpath("//td[@data-th='Prix']"));
 	}
 	
+	/**
+	 * 
+	 * @return total price item
+	 */
 	public WebElement getTotalItem() {
 		return getDriver().findElement(By.xpath("//td[@data-th='Total']"));
 	}
 	
-	
+	/**
+	 * 
+	 * @return webelement quantity of item
+	 */
 	public WebElement getQuantityWE() {
 		return quantity;
 	}
