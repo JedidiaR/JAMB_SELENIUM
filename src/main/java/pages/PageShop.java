@@ -32,15 +32,12 @@ public class PageShop extends AbstractPage{
 		PageFactory.initElements(driver, this);
 	}
 	
+	// return number of items in cart
 	public int countItems(WebDriverWait wait) {
 //		WebElement countItem = super.getDriver().findElement(By.xpath("//div[@class='shop-cart']/a/font"));
 		WebElement countItem = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='shop-cart']/a/font")));
 		String text = countItem.getText();
 		return Integer.parseInt(text.replaceAll("[^0-9]", ""));
-	}
-	
-	public WebElement getCountItem() {
-		return countItem;
 	}
 	
 	public void addItem(WebDriverWait wait) {
@@ -51,7 +48,7 @@ public class PageShop extends AbstractPage{
 	
 	public void recapCart() {		
 		//Creating object of an Actions class
-		Actions action = new Actions(super.getDriver());
+		Actions action = new Actions(getDriver());
 
 		//Performing the mouse hover action on the target element.
 		action.moveToElement(cartRecap).perform();
@@ -60,7 +57,7 @@ public class PageShop extends AbstractPage{
 	public CartPage goToCartPage(WebDriverWait wait) {
 		goToCart = wait.until(ExpectedConditions. elementToBeClickable(goToCart));
 		goToCart.click();
-		return new CartPage(super.getDriver());
+		return new CartPage(getDriver());
 	}
 	
 }

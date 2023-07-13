@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.time.Duration;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.By;
@@ -29,7 +30,7 @@ public class RunTest {
 	
 	private  String site = "http://localhost:8080/shopizer/shop?locale=fr";
 	
-	
+	@Before
 	public void init() {
 		driver = Utils.choisirNavigateur(ENavigateur.chrome);
 		driver.get(site);
@@ -37,52 +38,50 @@ public class RunTest {
 	}
 	
 	@Test
-	public void stepOneTwo() {
-		init();
+	public void testCaseOne() {
+		
 		// STEP 1 DONE
 		logger.info("STEP 1 : GO TO LANDING PAGE : " + driver.getTitle());
+		logger.info("ASSERT STEP 1 IN PROGRESS...");
 		assertEquals("Importa", driver.getTitle());
+		logger.info("ASSERT STEP 1 DONE");
 		
 		// STEP 2 DONE : GET RANDOM ITEM TO ADD TO CART
 		// CHANGE div[1] to div[2] or more to chose other item
-		PageShop pageShop = new PageShop(driver);
+		PageShop pageShop = new PageShop(driver); // home page
 		pageShop.addItem(wait);
-		logger.info("STEP 2 : ADD ITEM TO CART");
-		
-		//assert count incrementation
-		driver.navigate().refresh(); // otherwise (0) does not change to (1) after adding item
-		
+		logger.info("STEP 2 : ADD ITEM TO CART");		
 		logger.info("ASSERT STEP 2 IN PROGRESS...");
 		assertEquals(1, pageShop.countItems(wait));
-		logger.info("ASSERT STEP 2 DONE");
-		steps(pageShop);
-	}
-	
-	//@Test
-	public void steps(PageShop pageShop) {		
+		logger.info("ASSERT STEP 2 DONE");	
 		
 		// STEP 3 DONE : CLICK TO 'panier d achat'
-//		PageShop pageShop = new PageShop(driver);
 		pageShop.recapCart();
 		logger.info("CART RECAP");
 		CartPage cartPage = pageShop.goToCartPage(wait);
 		logger.info("STEP 3 : GO TO CART PAGE");
+		logger.info("ASSERT STEP 3 IN PROGRESS...");
+		assertEquals("http://localhost:8080/shopizer/shop/cart/shoppingCart.html",driver.getCurrentUrl());
+		logger.info("ASSERT STEP 3 DONE");
 		
-		// STEP 4 TO DO : IMAGE + NOM + QUANTITE + PRIX + TOTAL
-		logger.info("STEP 4 TO DO");
+		// STEP 4 DONE : ITEM VISIBLE
+		logger.info("STEP 4 : ITEM VISIBILITY");
 		assertTrue("ITEM IS NOT VISIBLE", cartPage.getItemFromCart().isDisplayed());
 		
 		// STEP 5 DONE : DOUBLE QUANTITY OF CHOSEN ITEM IN CART PAGE
 		logger.info("STEP 5 : DOUBLE QUANTITY");
-		wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 		cartPage.doubleQuantity(wait);
+		logger.info("ASSERT STEP 5 IN PROGRESS...");
+		assertEquals(2, cartPage.getQuantity());
+		logger.info("ASSERT STEP 5 DONE");
 		
 		// STEP 6 DONE : RECALCULATE BUTTON
 		logger.info("STEP 6 : RECALCULATE CART SUM");	
-		cartPage.recalculate();		
+		cartPage.recalculate();	
+		
+		driver.navigate().refresh();
 		
 		// STEP 7 : PAYMENT
-		wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 		cartPage.goToPayment(wait);
 		logger.info("GO TO PAYMENT");
 	}

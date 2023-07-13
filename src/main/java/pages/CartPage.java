@@ -2,6 +2,7 @@ package pages;
 
 import java.time.Duration;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -48,9 +49,15 @@ public class CartPage extends AbstractPage{
 	}
 	
 	public void goToPayment(WebDriverWait wait) {
-		payment = wait.until(ExpectedConditions.elementToBeClickable(payment));
+//		payment = wait.until(ExpectedConditions.elementToBeClickable(payment));
 		payment.click();
 //		payment.click();
+	}
+	
+	// return number of items
+	public int getQuantity() {
+		WebElement qty = getDriver().findElement(By.xpath("//input[@name='quantity']"));
+		return Integer.parseInt(qty.getAttribute("value"));
 	}
 	
 	
