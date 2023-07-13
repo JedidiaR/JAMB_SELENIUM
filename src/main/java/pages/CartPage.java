@@ -61,11 +61,11 @@ public class CartPage extends AbstractPage{
 		return Integer.parseInt(qty.getAttribute("value"));
 	}
 	
-	public String getSubTotal2() {
+	public String getSubTotal() {
 		return subtotal.getText().substring(3);
 	}
 	
-	public String getSubTotal() {
+	public String getSubTotal2() {
 		WebElement sub = getDriver().findElement(By.xpath("//span[@class='amount']"));
 		String res = sub.getText().substring(3);
 		return res;

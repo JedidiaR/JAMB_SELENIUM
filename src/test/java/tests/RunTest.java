@@ -67,6 +67,8 @@ public class RunTest {
 		// STEP 4 DONE : ITEM VISIBLE
 		logger.info("STEP 4 : ITEM VISIBILITY");
 		assertTrue("ITEM IS NOT VISIBLE", cartPage.getItemFromCart().isDisplayed());
+		// TODO: image / nom / quantité / prix / total
+		
 		
 		// STEP 5 DONE : DOUBLE QUANTITY OF CHOSEN ITEM IN CART PAGE
 		logger.info("STEP 5 : DOUBLE QUANTITY");
@@ -77,15 +79,20 @@ public class RunTest {
 		
 		// STEP 6 DONE : RECALCULATE BUTTON
 		logger.info("STEP 6 : RECALCULATE CART SUM");
-		logger.info("STEP 6 BEFORE ASSERT : " + cartPage.getSubTotal2());
+		String subTotal1 = cartPage.getSubTotal();
+		logger.info("STEP 6 BEFORE ASSERT : " + subTotal1);
 		cartPage.recalculate();	
-		logger.info("STEP 6 AFTER ASSERT : " + cartPage.getSubTotal());
+		driver.navigate().refresh();
 		
-//		driver.navigate().refresh();
+		String subTotal2 = cartPage.getSubTotal2();
+		double expected = Double.parseDouble(subTotal1) * 2;
+		assertEquals(expected, Double.parseDouble(subTotal2));
+		logger.info("STEP 6 AFTER ASSERT : " + subTotal2);
+		
 		
 		// STEP 7 : PAYMENT
 		cartPage.goToPayment(wait);
-		logger.info("GO TO PAYMENT");
+		logger.info("STEP 7 : GO TO PAYMENT");
 		logger.info("ASSERT STEP 7 IN PROGRESS...");
 		assertEquals("http://localhost:8080/shopizer/shop/order/checkout.html", driver.getCurrentUrl());
 		logger.info("ASSERT STEP 7 DONE");
