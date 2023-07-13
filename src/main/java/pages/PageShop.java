@@ -1,7 +1,8 @@
-package jamb_group;
+package pages;
 
 import java.time.Duration;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -29,6 +30,13 @@ public class PageShop extends AbstractPage{
 	public PageShop(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
+	}
+	
+	public int countItems(WebDriverWait wait) {
+//		WebElement countItem = super.getDriver().findElement(By.xpath("//div[@class='shop-cart']/a/font"));
+		WebElement countItem = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='shop-cart']/a/font")));
+		String text = countItem.getText();
+		return Integer.parseInt(text.replaceAll("[^0-9]", ""));
 	}
 	
 	public WebElement getCountItem() {

@@ -1,4 +1,4 @@
-package jamb_group;
+package tests;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -15,7 +15,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import jamb_group.OutilTechnique.ENavigateur;
+import pages.CartPage;
+import pages.PageShop;
+import utils.Utils;
+import utils.Utils.ENavigateur;
 
 public class RunTest {
 	
@@ -24,18 +27,18 @@ public class RunTest {
 
 	protected Logger logger = LoggerFactory.getLogger(this.getClass());
 	
-	private String site = "http://localhost:8080/shopizer/shop?locale=fr";
+	private  String site = "http://localhost:8080/shopizer/shop?locale=fr";
 	
-	@Before
+	
 	public void init() {
-		driver = OutilTechnique.choisirNavigateur(ENavigateur.chrome);
+		driver = Utils.choisirNavigateur(ENavigateur.chrome);
 		driver.get(site);
 		wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 	}
 	
 	@Test
 	public void stepOneTwo() {
-		
+		init();
 		// STEP 1 DONE
 		logger.info("STEP 1 : GO TO LANDING PAGE : " + driver.getTitle());
 		assertEquals("Importa", driver.getTitle());
@@ -47,22 +50,19 @@ public class RunTest {
 		logger.info("STEP 2 : ADD ITEM TO CART");
 		
 		//assert count incrementation
-//		WebElement countItem = pageShop.getCountItem();
 		driver.navigate().refresh(); // otherwise (0) does not change to (1) after adding item
-		WebElement countItem = driver.findElement(By.xpath("//div[@class='shop-cart']/a/font"));
 		
-		String text = countItem.getText();
-		int val = Integer.parseInt(text.replaceAll("[^0-9]", ""));
-		logger.info("ASSERT STEP 2");
-		assertEquals(1, val);
-		
+		logger.info("ASSERT STEP 2 IN PROGRESS...");
+		assertEquals(1, pageShop.countItems(wait));
+		logger.info("ASSERT STEP 2 DONE");
+		steps(pageShop);
 	}
 	
-
-	public void first() {		
+	//@Test
+	public void steps(PageShop pageShop) {		
 		
 		// STEP 3 DONE : CLICK TO 'panier d achat'
-		PageShop pageShop = new PageShop(driver);
+//		PageShop pageShop = new PageShop(driver);
 		pageShop.recapCart();
 		logger.info("CART RECAP");
 		CartPage cartPage = pageShop.goToCartPage(wait);

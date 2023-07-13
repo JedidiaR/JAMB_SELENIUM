@@ -1,4 +1,4 @@
-package jamb_group;
+package pages;
 
 import java.time.Duration;
 
@@ -9,7 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import jamb_group.OutilTechnique;
+import utils.OutilTechnique;
 
 public class CartPage extends AbstractPage{
 	

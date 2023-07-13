@@ -1,4 +1,4 @@
-package jamb_group;
+package utils;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -31,7 +31,7 @@ public class OutilTechnique {
 		}
 
 	}
-
+	
 	public static void elementExist(WebElement e) {
 		try {
 			e.isDisplayed();
