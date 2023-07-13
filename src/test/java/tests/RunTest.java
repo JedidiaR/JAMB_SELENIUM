@@ -64,11 +64,10 @@ public class RunTest {
 		logger.info("STEP 4");
 		logger.info("ASSERT STEP 4 : ITEM VISIBILITY");
 		assertTrue("ITEM IS NOT VISIBLE", cartPage.getItemFromCart().isDisplayed());
-		// TODO: prix / total
-		logger.info("ASSERT STEP 4 : VISIBILITY OF IMAGE ITEM");
 		assertTrue("ERROR IMAGE ITEM NOT VISIBLE",cartPage.getImgItem().isDisplayed());
 		assertTrue("ERROR QUANTITY ", cartPage.getQuantityWE().isDisplayed());
-		
+		assertTrue("ERROR PRICE ITEM", cartPage.getPriceItem().isDisplayed());
+		assertTrue("ERROR TOTAL PRICE ITEM", cartPage.getTotalItem().isDisplayed());
 		logger.info("ASSERT DONE");
 		
 		
