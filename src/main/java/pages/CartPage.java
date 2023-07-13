@@ -14,8 +14,8 @@ import utils.OutilTechnique;
 
 public class CartPage extends AbstractPage{
 	
-	//@FindBy(name = "")
-	@FindBy (xpath = "//input[@name='quantity']")
+	
+	@FindBy (name = "quantity")
 	private WebElement quantity;
 	
 	@FindBy (xpath = "//a[@onclick=\"javascript:updateCart('#mainCartTable');\"]")
@@ -24,10 +24,10 @@ public class CartPage extends AbstractPage{
 	@FindBy (xpath = "//a[@href='/shopizer/shop/order/checkout.html']")
 	private WebElement payment;
 	
-	@FindBy (xpath = "//span[@class='nomargin']")
+	@FindBy (className = "nomargin")
 	private WebElement item;
 	
-	@FindBy (xpath = "//span[@class='amount']")
+	@FindBy (className = "amount")
 	private WebElement subtotal;
 	
 	public CartPage(WebDriver driver) {
@@ -98,6 +98,11 @@ public class CartPage extends AbstractPage{
 		String res = sub.getText().substring(3);
 		return res;
 //		return Integer.parseInt(res);
+	}
+	
+	public WebElement getImgItem() {
+		return getDriver().findElement(By.xpath("//div[@class='row-cart']/*/img"));
+		
 	}
 	
 	

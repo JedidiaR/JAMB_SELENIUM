@@ -16,7 +16,7 @@ public class PageShop extends AbstractPage{
 	@FindBy (xpath = "//a[@class='addToCart']")
 	private WebElement item;
 	
-	@FindBy (xpath = "//span[@class='lnr lnr-cart']")
+	@FindBy (className = "lnr-cart")
 	private WebElement cartRecap;
 	
 	@FindBy (xpath = "//a[@onclick='viewShoppingCartPage();']")
