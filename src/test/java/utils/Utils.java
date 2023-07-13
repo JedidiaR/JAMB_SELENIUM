@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-import utils.OutilTechnique;
+import utils.Helpers;
 
 public class Utils {
 
@@ -52,7 +52,7 @@ public class Utils {
 	}
 
 	public static void setDriver(WebDriver driver) {
-		OutilTechnique.driver = driver;
+		Helpers.driver = driver;
 	}
 
 	public static WebElement getCellule(int row, int col) {

@@ -11,6 +11,10 @@ import pages.PageShop;
 
 public class TestCart extends RunTest {
 	
+	// JDD
+	private String cartURI = "http://localhost:8080/shopizer/shop/cart/shoppingCart.html";
+	private String checkoutURI = "http://localhost:8080/shopizer/shop/order/checkout.html";
+	
 	@Test
 	public void testCaseOne() {
 		
@@ -35,7 +39,7 @@ public class TestCart extends RunTest {
 		CartPage cartPage = pageShop.goToCartPage(wait);
 		logger.info("STEP 3 : GO TO CART PAGE");
 		logger.info("ASSERT STEP 3 IN PROGRESS...");
-		assertEquals("ERROR GO TO CART PAGE","http://localhost:8080/shopizer/shop/cart/shoppingCart.html",driver.getCurrentUrl());
+		assertEquals("ERROR GO TO CART PAGE",cartURI,driver.getCurrentUrl());
 		logger.info("ASSERT STEP 3 DONE");
 		
 		// STEP 4 DONE : ITEM VISIBLE
@@ -75,7 +79,7 @@ public class TestCart extends RunTest {
 		cartPage.goToPayment(wait);
 		logger.info("STEP 7 : GO TO PAYMENT");
 		logger.info("ASSERT STEP 7 IN PROGRESS...");
-		assertEquals("http://localhost:8080/shopizer/shop/order/checkout.html", driver.getCurrentUrl());
+		assertEquals("ERROR CHECKOUT PAYMENT",checkoutURI, driver.getCurrentUrl());
 		logger.info("ASSERT STEP 7 DONE");
 	}
 }

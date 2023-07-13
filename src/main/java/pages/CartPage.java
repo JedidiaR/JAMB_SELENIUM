@@ -10,7 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import utils.OutilTechnique;
+import utils.Helpers;
 
 public class CartPage extends AbstractPage{
 	
@@ -51,7 +51,7 @@ public class CartPage extends AbstractPage{
 		quantity = wait.until(ExpectedConditions.elementToBeClickable(quantity));
 		
 		int sum = Integer.parseInt(quantity.getAttribute("value")) * 2;
-		OutilTechnique.remplirChamp(quantity, String.valueOf(sum));
+		Helpers.fillInput(quantity, String.valueOf(sum));
 	}
 	/**
 	 * click recalculate button

@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import pages.RegistrationPage;
+
 public class NavBar {
 	
 	private WebDriver driver;
@@ -41,14 +43,16 @@ public class NavBar {
 	
 	/**
 	 * click register
+	 * @return registration page
 	 */
-	public void clickRegister() {
+	public RegistrationPage clickRegister() {
 		register.click();
+		return new RegistrationPage(driver);
 	}
 	
 	/**
 	 *  GETTER
-	 * @return register
+	 * @return register webelement
 	 */
 	public WebElement getRegister() {
 		return register;

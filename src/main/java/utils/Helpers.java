@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class OutilTechnique {
+public class Helpers {
 
 	public static WebDriver driver;
 
@@ -14,7 +14,7 @@ public class OutilTechnique {
 		firefox, chrome,
 	}
 
-	public static WebDriver choisirNavigateur(ENavigateur nav) {
+	public static WebDriver choseDriver(ENavigateur nav) {
 		switch (nav) {
 		case firefox:
 			System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver.exe");
@@ -40,7 +40,7 @@ public class OutilTechnique {
 		}
 	}
 
-	public static void remplirChamp(WebElement e, String s) {
+	public static void fillInput(WebElement e, String s) {
 		e.clear();
 		e.sendKeys(s);
 	}
@@ -50,7 +50,7 @@ public class OutilTechnique {
 	}
 
 	public static void setDriver(WebDriver driver) {
-		OutilTechnique.driver = driver;
+		Helpers.driver = driver;
 	}
 
 	public static WebElement getCellule(int row, int col) {
