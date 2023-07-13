@@ -16,9 +16,6 @@ public class PageShop extends AbstractPage{
 	@FindBy (xpath = "//a[@class='addToCart']")
 	private WebElement item;
 	
-	@FindBy (className = "lnr-cart")
-	private WebElement cartRecap;
-	
 	@FindBy (xpath = "//a[@onclick='viewShoppingCartPage();']")
 	private WebElement goToCart;
 	
@@ -59,7 +56,7 @@ public class PageShop extends AbstractPage{
 	 */
 	public void recapCart() {		
 		Actions action = new Actions(getDriver());
-		action.moveToElement(cartRecap).perform();
+		action.moveToElement(getNavBar().getCart()).perform();
 	}
 	
 	/**
