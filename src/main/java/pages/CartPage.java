@@ -27,9 +27,11 @@ public class CartPage extends AbstractPage{
 	@FindBy (xpath = "//span[@class='nomargin']")
 	private WebElement item;
 	
+	@FindBy (xpath = "//span[@class='amount']")
+	private WebElement subtotal;
+	
 	public CartPage(WebDriver driver) {
 		super(driver);
-//		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
 	
@@ -49,15 +51,25 @@ public class CartPage extends AbstractPage{
 	}
 	
 	public void goToPayment(WebDriverWait wait) {
-//		payment = wait.until(ExpectedConditions.elementToBeClickable(payment));
+		payment = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@href='/shopizer/shop/order/checkout.html']")));
 		payment.click();
-//		payment.click();
 	}
 	
 	// return number of items
 	public int getQuantity() {
 		WebElement qty = getDriver().findElement(By.xpath("//input[@name='quantity']"));
 		return Integer.parseInt(qty.getAttribute("value"));
+	}
+	
+	public String getSubTotal2() {
+		return subtotal.getText().substring(3);
+	}
+	
+	public String getSubTotal() {
+		WebElement sub = getDriver().findElement(By.xpath("//span[@class='amount']"));
+		String res = sub.getText().substring(3);
+		return res;
+//		return Integer.parseInt(res);
 	}
 	
 	

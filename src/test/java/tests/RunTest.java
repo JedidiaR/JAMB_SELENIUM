@@ -28,7 +28,7 @@ public class RunTest {
 
 	protected Logger logger = LoggerFactory.getLogger(this.getClass());
 	
-	private  String site = "http://localhost:8080/shopizer/shop?locale=fr";
+	private String site = "http://localhost:8080/shopizer/shop?locale=fr";
 	
 	@Before
 	public void init() {
@@ -76,14 +76,19 @@ public class RunTest {
 		logger.info("ASSERT STEP 5 DONE");
 		
 		// STEP 6 DONE : RECALCULATE BUTTON
-		logger.info("STEP 6 : RECALCULATE CART SUM");	
+		logger.info("STEP 6 : RECALCULATE CART SUM");
+		logger.info("STEP 6 BEFORE ASSERT : " + cartPage.getSubTotal2());
 		cartPage.recalculate();	
+		logger.info("STEP 6 AFTER ASSERT : " + cartPage.getSubTotal());
 		
-		driver.navigate().refresh();
+//		driver.navigate().refresh();
 		
 		// STEP 7 : PAYMENT
 		cartPage.goToPayment(wait);
 		logger.info("GO TO PAYMENT");
+		logger.info("ASSERT STEP 7 IN PROGRESS...");
+		assertEquals("http://localhost:8080/shopizer/shop/order/checkout.html", driver.getCurrentUrl());
+		logger.info("ASSERT STEP 7 DONE");
 	}
 
 }
